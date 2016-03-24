@@ -1,0 +1,49 @@
+#!/bin/bash
+
+CMD=$*
+SERVERPID=""
+SERVERACTIVE=false
+# http://stackoverflow.com/questions/14964402/spawn-server-and-wait-repeat-on-sighup
+
+# Start server
+start() {
+    $CMD &
+    SERVERPID=$!
+    SERVERACTIVE=true
+}
+
+cont() {
+    kill -SIGCONT $SERVERPID
+}
+
+stop() {
+    kill -SIGSTOP $SERVERPID
+}
+
+terminate() {
+    kill -SIGKILL $SERVERPID
+}
+
+force-terminate() {
+    kill -SIGKILL $SERVERPID
+}
+
+# Catch signal to sent it to the server
+trap cont            SIGCONT
+trap stop            SIGTSTP SIGTTIN SIGTTOU
+trap terminate       SIGHUP SIGINT SIGTERM
+trap force-terminate EXIT
+
+# Start server
+start
+sleep 30s
+
+# Initialize database
+#...
+psql -c "CREATE DATABASE geoserver WITH OWNER = postgres"
+
+# Main loop
+while $SERVERACTIVE; do
+    SERVERACTIVE=false
+    wait $SERVERPID
+done
