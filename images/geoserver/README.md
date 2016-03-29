@@ -16,7 +16,7 @@ In our installation, we have to share the `geoserver` folder :
 
     docker run -d -p 8080:8080 --name=geoserver -v /mnt/geoserver:/var/lib/tomcat7/webapps/geoserver vsasyan/geoserver:1.0.0
 
-We assume that `/mnt/geoserver` is the shared folder.
+We assume that `/mnt/geoserver` is the shared folder (see [nfs-server.md](../../nfs-server.md)).
 
 ## Used pages - Notes
 
