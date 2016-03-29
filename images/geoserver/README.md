@@ -1,4 +1,24 @@
-## Used pages
+# Image arm-geoserver
+
+## Get the image
+
+Download the image (or build again) :
+
+    docker pull vsasyan/geoserver:1.0.0
+
+Run the container (needs 2-3 minutes to start) :
+
+    docker run -d -p 8080:8080 vsasyan/geoserver:1.0.0
+
+You can go to : http://server:8080/geoserver
+
+In our installation, we have to share the `geoserver` folder :
+
+    docker run -d -p 8080:8080 --name=geoserver -v /mnt/geoserver:/var/lib/tomcat7/webapps/geoserver vsasyan/geoserver:1.0.0
+
+We assume that `/mnt/geoserver` is the shared folder.
+
+## Used pages - Notes
 
 ### Installation of Geoserver
 
