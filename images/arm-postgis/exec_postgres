@@ -44,7 +44,8 @@ sleep 30s
 
 # Initialize database
 #...
-psql -c "CREATE DATABASE geoserver WITH OWNER = postgres"
+psql -U postgres -h localhost -d postgres < geo.sql
+rm geo.sql
 
 # Main loop
 while $SERVERACTIVE; do
