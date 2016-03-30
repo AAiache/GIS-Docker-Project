@@ -13,18 +13,22 @@ start() {
 }
 
 cont() {
+    SERVERACTIVE=false
     kill -SIGCONT $SERVERPID
 }
 
 stop() {
+    SERVERACTIVE=false
     kill -SIGSTOP $SERVERPID
 }
 
 terminate() {
+    SERVERACTIVE=false
     kill -SIGKILL $SERVERPID
 }
 
 force-terminate() {
+    SERVERACTIVE=false
     kill -SIGKILL $SERVERPID
 }
 
@@ -44,6 +48,5 @@ psql -c "CREATE DATABASE geoserver WITH OWNER = postgres"
 
 # Main loop
 while $SERVERACTIVE; do
-    SERVERACTIVE=false
     wait $SERVERPID
 done
