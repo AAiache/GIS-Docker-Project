@@ -16,6 +16,8 @@ RUN apt-get install --no-install-recommends keepalived -y
 
 COPY keepalived.conf /etc/keepalived/keepalived.conf
 
+#Entrypoint
+
 ENTRYPOINT ["/bin/sh", "-c"]
 
 CMD ["/usr/sbin/keepalived && while true; do sleep 1000; done"]
