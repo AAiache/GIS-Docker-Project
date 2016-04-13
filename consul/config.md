@@ -11,7 +11,7 @@ Extract it. Then copy `consul` to /usr/local/bin/ and `consul-ui` in `/home/pi/c
 
 Run consul interface :
 
-    consul agent -dev -ui -ui-dir /home/pi/consul/ui -bind piensg010 -client piensg010
+    consul agent -dev -ui -ui-dir /home/pi/consul/ui -bind 192.168.1.27 -client 192.168.1.27
 
 ## Configuration
 
