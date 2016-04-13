@@ -1,4 +1,6 @@
-# Installation of consul
+# Consul
+
+## Installation of consul
 
 Download :
     
@@ -10,3 +12,13 @@ Extract it. Then copy `consul` to /usr/local/bin/ and `consul-ui` in `/home/pi/c
 Run consul interface :
 
     consul agent -dev -ui -ui-dir /home/pi/consul/ui -bind piensg010 -client piensg010
+
+## Configuration
+
+### Other devices
+
+Run: `sudo vim /etc/default/docker` and add :
+
+    DOCKER_OPTS="--storage-driver=overlay -D -H tcp://0.0.0.0:2375 --cluster-store=consul://192.168.1.27:8500 --cluster-advertise=eth0:2375"
+
+### Main device
