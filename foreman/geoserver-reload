@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# Alban Kraus
+# 31 mars 2016
+#
+# This script watches the modifications of Geoserver mount point, and
+# triggers catalog reload on all servers
+
+gsfolder=/var/geoserver
+
+# Get IP addresses
+# TODO
+
+# Watch folder
+# Use inotify kernel interface: https://www.howtoforge.com/tutorial/trigger-commands-on-file-or-directory-changes-with-incron/
+
+# Enable trigger
+
+# Reload catalog
+for $ip in $ipaddr
+do
+    wget -qO- --ask-password --user=admin --method=PUT http://192.168.1.255:8080/geoserver/rest/reload >/dev/null
+    if [ $? -ne 0 ]
+    then
+	logger --priority daemon.warning "Failed to reload geoservers."
+    fi
+done

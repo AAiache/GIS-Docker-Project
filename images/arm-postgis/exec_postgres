@@ -44,7 +44,7 @@ sleep 30s
 
 # Initialize database
 #...
-psql -U postgres -h localhost -d postgres < geo.sql
+psql -d postgres < geo.sql
 rm geo.sql
 
 # Main loop
