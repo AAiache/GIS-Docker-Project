@@ -21,6 +21,10 @@ Run: `sudo vim /etc/default/docker` and add :
 
     DOCKER_OPTS="--storage-driver=overlay -D -H tcp://0.0.0.0:2375 --cluster-store=consul://192.168.1.27:8500 --cluster-advertise=eth0:2375"
 
+Then run a swarm container :
+
+    docker run -d --restart=always hypriot/rpi-swarm join --advertise=192.168.1.27:2375 consul://192.168.1.27:8500
+
 ### Main device
 
     docker run -d --restart=always -p 4060:4161 hypriot/rpi-swarm manage -H 0.0.0.0:4161 consul://192.168.1.27:8500/docker/nodes/
