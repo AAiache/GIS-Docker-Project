@@ -10,11 +10,7 @@ MAINTAINER AminaAiache <https://github.com/AAiache>
 
 #Install Keepalived
 
-RUN apt-get update
-
-RUN apt-get install --no-install-recommends keepalived -y
-
-RUN apt-get install --no-install-recommends pgpool2 -y
+RUN apt-get update && apt-get install --no-install-recommends keepalived -y && apt-get install --no-install-recommends pgpool2 -y
 
 COPY keepalived.conf /etc/keepalived/keepalived.conf
 
