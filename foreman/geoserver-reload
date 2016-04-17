@@ -6,22 +6,142 @@
 # This script watches the modifications of Geoserver mount point, and
 # triggers catalog reload on all servers
 
-gsfolder=/var/geoserver
+gsfolder=/var/geoserver/data/workspaces
+incrontab=/var/spool/incron/root
+this="$(realpath $0)"
 
 # Get IP addresses
 # TODO
 
 # Watch folder
 # Use inotify kernel interface: https://www.howtoforge.com/tutorial/trigger-commands-on-file-or-directory-changes-with-incron/
+# # apt-get install incron
+# # echo pi >> /etc/incron.allow
 
-# Enable trigger
+systemctl -q is-active incron
+if [ $? -ne 0 ]
+then
+    >&2 echo "INCRON DAEMON IS NOT RUNNING. Cannot do anything."
+    logger --priority daemon.error "INCRON DAEMON IS NOT RUNNING. Cannot do anything."
+    exit 1
+fi
 
-# Reload catalog
-for $ip in $ipaddr
-do
-    wget -qO- --ask-password --user=admin --method=PUT http://192.168.1.255:8080/geoserver/rest/reload >/dev/null
-    if [ $? -ne 0 ]
+track () {
+    if [ -n "$1" ]
     then
-	logger --priority daemon.warning "Failed to reload geoservers."
+	echo "$(echo $1 |sed 's| |\\ |g')    IN_CREATE,IN_DELETE,IN_MODIFY    $this  \$% \$@/\$#" >> $incrontab
     fi
-done
+}
+
+untrack () {
+    cp $incrontab /tmp/.pincrontab
+    sed "\|^$1    |d" /tmp/.pincrontab > $incrontab
+    rm /tmp/.pincrontab
+}
+
+recurse () {
+    if [ -z "$1" ]
+    then
+	>&2 echo "Recurse: empty filename. Abort."
+	exit 1
+    fi
+
+    track "$1"
+
+    for folder in "$1"/*
+    do
+	if [ -d "$folder" ]
+	then
+	    recurse "$folder"
+	fi
+    done
+}
+
+start () {
+    recurse "$gsfolder"
+}
+
+stop () {
+    echo "" > /var/spool/incron/pi
+}
+
+reload () {
+#    for ip in $ipaddr
+#    do
+#	wget -qO- --ask-password --user=admin --method=PUT http://192.168.1.255:8080/geoserver/rest/reload >/dev/null
+#	if [ $? -ne 0 ]
+#	then
+#	    logger --priority daemon.warning "Failed to reload geoservers."
+#	fi
+    #    done
+    logger --priority daemon.info "Update geoservers."
+}
+
+# Parsing commandline arguments
+command=$1
+if [ -z $command ]
+then
+    echo "No command supplied. Try '$0 help'."
+    logger --priority daemon.error "No command supplied."
+    exit 1
+fi
+
+shift
+
+case $command in
+    IN_MODIFY)
+	command=reload
+	;;
+    IN_CREATE)
+	command=track
+	;;
+    IN_DELETE)
+	command=untrack
+	;;
+    help)
+	cat <<EOF
+Usage: $0 <command> [argument]
+
+Description:
+    $0 monitors the folder $gsfolder
+    and its subfolders for changes.
+    It can run as a server or a client depending on the command provided.
+
+Command summary:
+    start: 
+        Triggers kernel watching in all subfolders of
+        $gsfolder.
+        Internally, it uses an incron table.
+
+    stop:
+        Stops kernel watching by dropping the incron table.
+
+    track <folder>:
+        Append <folder> to the list of folders to be tracked.
+        The daemon should have already run this command if a folder is created
+        in a watched directory.  So, beware of adding the folder multiple times.
+        If <folder> is not a directory, this command does nothing and returns 0.
+
+    untrack <folder>:
+        Clear the incron table entry for <folder>. If <folder> is not tracked,
+        the command still succeeds.
+
+    recurse <folder>:
+        Recursively track the subfolders of <folder>.
+        If <folder> is not a directory, the command does nothing and returns 0.
+
+    reload:
+        Triggers the reload of geoservers.
+
+Files:
+    $pidfile
+    Contains the daemon process ID.
+
+Author: Alban Kraus
+    © 2016 École nationale des sciences géographiques
+EOF
+	exit 0
+	;;
+esac
+
+$command $@
