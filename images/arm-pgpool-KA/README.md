@@ -19,4 +19,7 @@ From a PostgreSQL Client run :
 
     psql -U postgres -h 172.17.0.? -d geoserver
 
+## Running in Docker SWARM
 
+    docker run -d --name=pgpool-master --net=ava arm-pgpool-ka-master
+    docker run -d --name=pgpool-slave --net=ava arm-pgpool-ka-slave
