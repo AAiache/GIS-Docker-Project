@@ -24,6 +24,12 @@ Run: `sudo vim /etc/default/docker` and add :
 ### Main device
 
     docker run -d --restart=always -p 4060:4161 hypriot/rpi-swarm manage -H 0.0.0.0:4161 consul://192.168.1.27:8500/docker/nodes/
+    
+Now we have to modify the docker host :
+
+    export DOCKER_HOST="tcp://192.168.1.27:4060"
+
+Restart the session. Now `docker ps -a` show nothing: we are not connected to the docker of the computer but the docker swarn in the container.
 
 ### Installation of Docker Compose
 
