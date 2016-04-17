@@ -23,17 +23,17 @@ Run: `sudo vim /etc/default/docker` and add :
 
 Then run a swarm container :
 
-    docker run -d --restart=always hypriot/rpi-swarm join --advertise=192.168.1.27:2375 consul://192.168.1.27:8500
+    docker run -d --restart=always hypriot/rpi-swarm join --advertise=<ip_node>:2375 consul://192.168.1.27:8500
 
 ### Main device
 
-    docker run -d --restart=always -p 4060:4161 hypriot/rpi-swarm manage -H 0.0.0.0:4161 consul://192.168.1.27:8500/docker/nodes/
+    docker run -d --restart=always -p 4060:4161 hypriot/rpi-swarm manage -H 0.0.0.0:4161 consul://192.168.1.27:8500/
     
 Now we have to modify the docker host :
 
     export DOCKER_HOST="tcp://192.168.1.27:4060"
 
-Restart the session. Now `docker ps -a` show nothing: we are not connected to the docker of the computer but the docker swarn in the container.
+Restart the session. Now `docker ps -a` show the swarm container in `join` mode: we are not connected to the docker of the computer but the docker swarn in the container.
 
 ### Installation of Docker Compose
 
