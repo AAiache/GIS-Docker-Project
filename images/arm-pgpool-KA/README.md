@@ -21,5 +21,5 @@ From a PostgreSQL Client run :
 
 ## Running in Docker SWARM
 
-    docker run -d --name=pgpool-master --net=ava arm-pgpool-ka-master
-    docker run -d --name=pgpool-slave --net=ava arm-pgpool-ka-slave
+    docker run -d --name=pgpool-master --env='constraint:node==piensg011' --net=ava arm-pgpool-ka-master
+    docker run -d --name=pgpool-slave --env='constraint:node==piensg012' --net=ava arm-pgpool-ka-slave
