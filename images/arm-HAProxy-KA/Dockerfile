@@ -35,4 +35,4 @@ COPY keepalived.conf /etc/keepalived/keepalived.conf
 COPY haproxy.cfg /etc/haproxy/haproxy.cfg
 
 ENTRYPOINT ["/bin/sh", "-c"]
-CMD ["haproxy -f /etc/haproxy/haproxy.cfg && while true; do sleep 1000; done"]
+CMD ["keepalived -f /etc/keepalived/keepalived.conf && haproxy -f /etc/haproxy/haproxy.cfg && while true; do sleep 1000; done"]
