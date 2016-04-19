@@ -30,4 +30,4 @@ RUN adduser --group --system --no-create-home --disabled-password --disabled-log
 COPY haproxy.cfg /etc/haproxy/haproxy.cfg
 
 ENTRYPOINT ["/bin/sh", "-c"]
-CMD ["sleep 180000 && haproxy -f /etc/haproxy/haproxy.cfg && while true; do sleep 1000; done"]
+CMD ["sleep 180 && haproxy -f /etc/haproxy/haproxy.cfg && while true; do sleep 1000; done"]
