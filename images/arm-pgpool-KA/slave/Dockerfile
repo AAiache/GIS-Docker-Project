@@ -20,4 +20,4 @@ COPY pgpool.conf /etc/pgpool2/pgpool.conf
 
 ENTRYPOINT ["/bin/sh", "-c"]
 
-CMD ["/usr/sbin/keepalived && pgpool && while true; do sleep 1000; done"]
+CMD ["pgpool && /usr/sbin/keepalived && while true; do sleep 1000; done"]
