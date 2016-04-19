@@ -40,12 +40,15 @@ trap force-terminate EXIT
 
 # Start server
 start
-sleep 30s
 
 # Initialize database
 #...
-psql -d postgres < geo.sql
-rm geo.sql
+if [ -e /tmp/geo.sql ]
+then
+  sleep 30s
+  psql -d postgres < /tmp/geo.sql
+  rm /tmp/geo.sql
+fi
 
 # Main loop
 while $SERVERACTIVE; do

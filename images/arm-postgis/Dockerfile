@@ -28,4 +28,5 @@ COPY    exec_postgres bin/
 RUN     chmod a+x bin/exec_postgres
 RUN     sed -i "s|^#\(listen_addresses = '\)localhost\(.*\)$|\1\*\2|" /etc/postgresql/9.4/main/postgresql.conf
 COPY    pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
-COPY    geo.sql ./
+COPY    geo.sql /tmp/
+RUN     chown postgres:postgres /tmp/geo.sql
