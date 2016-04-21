@@ -45,7 +45,7 @@ start
 #...
 if [ -e /tmp/geo.sql ]
 then
-  sleep 30s
+  sleep 1m
   psql -d postgres < /tmp/geo.sql
   rm /tmp/geo.sql
 fi
