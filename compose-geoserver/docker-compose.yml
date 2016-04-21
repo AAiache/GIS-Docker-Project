@@ -1,64 +1,27 @@
 version: '2'
 
 services:
-  haproxy1:
-    image: vsasyan/arm-haproxy
-    ports:
-      -  "80:80"
-      -  "8888:8080"
-    networks:
-      - default
-    environment:
-      - "constraint:node==node1"
-  haproxy2:
-    image: vsasyan/arm-haproxy
-    ports:
-      -  "80:80"
-      -  "8888:8080"
-    environment:
-      - "constraint:node==node2"
-    networks:
-      - default
-  haproxy3:
-    image: vsasyan/arm-haproxy
-    ports:
-      -  "80:80"
-      -  "8888:8080"
-    environment:
-      - "constraint:node==node3"
-    networks:
-      - default
-  haproxy4:
-    image: vsasyan/arm-haproxy
-    ports:
-      -  "80:80"
-      -  "8888:8080"
-    environment:
-      - "constraint:node==node4"
-    networks:
-      - default
-
   pgpool1:
     image: aaiache/arm-pgpool
     networks:
       - default
     ports:
       - "15432:5432"
-  pgpool2:
-    image: aaiache/arm-pgpool
-    networks:
-      - default
-    ports:
-      - "15432:5432"
-
+    environment:
+      - "constraint:node==node1"
+  
   postgis1:
     image: alkra/arm-postgis:5.6
     networks:
       - default
+    environment:
+      - "constraint:node==node1"
   postgis2:
     image: alkra/arm-postgis:5.6
     networks:
       - default
+    environment:
+      - "constraint:node==node1"
 
   geoserver1:
     image: vsasyan/geoserver
@@ -68,6 +31,8 @@ services:
       - /mnt/geoserver:/var/lib/tomcat7/webapps/geoserver
     networks:
       - default
+    environment:
+      - "constraint:node==node2"
   geoserver2:
     image: vsasyan/geoserver
     ports:
@@ -76,6 +41,8 @@ services:
       - /mnt/geoserver:/var/lib/tomcat7/webapps/geoserver
     networks:
       - default
+    environment:
+      - "constraint:node==node3"
   geoserver3:
     image: vsasyan/geoserver
     ports:
@@ -84,6 +51,10 @@ services:
       - /mnt/geoserver:/var/lib/tomcat7/webapps/geoserver
     networks:
       - default
+    environment:
+      - "constraint:node==node4"
+
+
 
 networks:
   default:
