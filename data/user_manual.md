@@ -58,6 +58,8 @@ Go to the folder compose, which contains the `docker-compose.yml` file and run:
 
     docker-compose up
 
+The folder `compose-geoserver` is a simplified version of the architecture which we user to test the application before running the real one.
+
 ##8. Have fun!
 
 Open your favorite browser and go to `http://192.168.1.240' (the virtual IP of Keepalived)

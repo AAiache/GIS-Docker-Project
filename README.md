@@ -28,5 +28,20 @@ https://docs.google.com/document/d/1N-eZ4-nIZwrFRbM7Vmv_Ndnjm1wsFEICqVnhz0bBO8U/
 All the tools used are in Docker containers: Geoserver, PostgreSQL/PostGIS, Pgpool-II, HAProxy and Keepalived.  
 We used `Docker Compose` which is a tool for defining and running multi-container Docker applications.
 
+###Architecture 
+
+To make our application, we proposed an architecture that we are going to explain using the following diagrams:
+
+####1. Physical Architeture: 
+
+![Physical Architeture](https://github.com/AAiache/GIS-Docker-Project/blob/master/Architecture_Diagrams/Physical.png?raw=tru "Physical Architeture")
+
+####2. Logical Architeture: 
+
+![Physical Architeture](https://github.com/AAiache/GIS-Docker-Project/blob/master/Architecture_Diagrams/Physical.png?raw=tru "Physical Architeture")
+
+####3. Administrative Architeture: 
+
+![Physical Architeture](https://github.com/AAiache/GIS-Docker-Project/blob/master/Architecture_Diagrams/Physical.png?raw=tru "Physical Architeture")
 ##[Try it!](data/user_manual.md)
 
