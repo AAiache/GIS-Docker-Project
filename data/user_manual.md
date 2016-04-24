@@ -68,5 +68,5 @@ The folder `compose-geoserver` is a simplified version of the architecture, whic
 
 ## 8. Have fun!
 
-Open your favourite browser and go to [http://192.168.1.240:80/geoserver](http://192.168.1.240) (the virtual IP of Keepalived)
+Open your favourite browser and go to [http://192.168.1.240:80/geoserver](http://192.168.1.240/geoserver) (the virtual IP of Keepalived)
 
