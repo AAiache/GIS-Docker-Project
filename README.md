@@ -38,11 +38,13 @@ To make our application, we proposed an architecture that we are going to explai
 
 #### 2. Logical Architecture:
 
-![Physical Architecture](https://github.com/AAiache/GIS-Docker-Project/blob/master/Architecture_Diagrams/Logical.png?raw=tru "Physical Architecture")
+![Logical Architecture](https://github.com/AAiache/GIS-Docker-Project/blob/master/Architecture_Diagrams/Logical.png?raw=tru "Logical Architecture")
+
+Pink rectangles stand for Docker containers.
 
 #### 3. Administrative Architecture:
 
-![Physical Architecture](https://github.com/AAiache/GIS-Docker-Project/blob/master/Architecture_Diagrams/Administrative.png?raw=tru "Physical Architecture")
+![Administrative Architecture](https://github.com/AAiache/GIS-Docker-Project/blob/master/Architecture_Diagrams/Administrative.png?raw=tru "Administrative Architecture")
 
 ## [Try it!](data/user_manual.md)
 
