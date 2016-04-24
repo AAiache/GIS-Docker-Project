@@ -16,7 +16,7 @@ I created a Docker image to run Keepalived as a master, and one to run it as a s
 
 ###Architecture limitations
 
-The architecture we proposed has a Single Point Of Failure (SPOF), which is on the master machine which runs Swarm Manager and Consul. So, if this machine crashes, the service is not available anymore.
+* The architecture we proposed has a Single Point Of Failure (SPOF), which is on the master machine which runs Swarm Manager and Consul. So, if this machine crashes, the service is not available anymore.
 
 ###To improve it, we could:
 
