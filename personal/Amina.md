@@ -27,5 +27,5 @@ I thought that making a Docker Swarm cluster was very difficult, because it was 
 
 ### Blocking points
 
-I think that I don't have any blocking point. I understand all of what we did.  
-I beleive that it was a very interesting project, I really learned a lot of things, and I like Docker!
+* I think that I don't have any blocking point. I understand all of what we did.  
+* I beleive that it was a very interesting project, I really learned a lot of things, and I like Docker!
