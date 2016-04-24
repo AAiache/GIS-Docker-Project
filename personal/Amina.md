@@ -18,6 +18,6 @@ I created a Docker image to run Keepalived as a master, and one to run it as a s
 
 The architecture we proposed has a Single Point Of Failure (SPOF), which is on the master machine which runs Swarm Manager and Consul. So, if this machine crashes, the service is not available anymore.
 
-###To improve it we could:
+###To improve it, we could:
 
 * Run Consul on a docker container, so it would not have a SPOF anymore. Given that we have a virtaul IP provided by Keepalived which manages HAProxy and Pgpool-II containers, we should do the same for Consul!  
