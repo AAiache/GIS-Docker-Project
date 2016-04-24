@@ -16,7 +16,7 @@ travail.
 
 J'ai donc commencé par travailler sur la réplication de bases
 PostgreSQL. Je suis l'auteur principal du fichier
-[`postgresql.md`](../data/postgresql.md).  J'ai bien compris que toute
+[`postgresql.md`](../postgresql.md).  J'ai bien compris que toute
 tentative de réplication à l'échelle du système de fichiers serait
 vaine, puisque chaque base a sa manière propre d'organiser ses
 données. Les seules solutions sont alors de rediriger les requêtes
@@ -30,7 +30,7 @@ elle est plus jolie.
 
 J'ai ensuite commencé à documenter et tester cet outil, *pgpool
 II*. C'est Amina qui s'est chargée de le Dockeriser, en se basant sur
-[mon document](../data/pg-pool-II.md).
+[mon document](../pg-pool-II.md).
 
 L'initialisation de la base a été une légère difficulté technique ; en
 regardant le code de l'image officielle amd64 de PostgreSQL, j'ai vu
