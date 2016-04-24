@@ -35,14 +35,14 @@ We anticipated shell scripts to automate run all Docker Swarm and Keepalived con
 
 ##5. Run Keepalived containers
 
-To do so, customise the file `shell_scripts/run_keepalived.sh' so as to replace hostnames by yours and run the shell script:
+To do so, customise the file `shell_scripts/run_keepalived.sh` so as to replace hostnames by yours and run the shell script:
 
     chmod +x run_keepalived.sh
     ./run_keepalived.sh
 
 ##6. Run Docker Swarm containers
 
-To do so, customise the file `shell_scripts/run_swarm.sh' so as to replace hostnames and IP addresses by yours and run the shell script:
+To do so, customise the file `shell_scripts/run_swarm.sh` so as to replace hostnames and IP addresses by yours and run the shell script:
 
     chmod +x run_swarm.sh
     ./run_swarm.sh
@@ -62,5 +62,5 @@ The folder `compose-geoserver` is a simplified version of the architecture which
 
 ##8. Have fun!
 
-Open your favorite browser and go to `http://192.168.1.240' (the virtual IP of Keepalived)
+Open your favorite browser and go to [http://192.168.1.240](http://192.168.1.240) (the virtual IP of Keepalived)
 
