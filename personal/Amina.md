@@ -13,6 +13,7 @@ I tested my image by running two PostgreSQL containers on different machine, and
 We have three Geoservers running in Docker containers, managed by HAProxy which runs in Docker conatiners too. The problem is if we want to add a Geoserver, we should stop the service. As a result, our system would not be a `high available` one. The solution is to add a virtual IP between HAProxy containers, define a master one, and if it crashes, the service is still available. That is why we used Keepalived.
 I created a Docker image to run Keepalived as a master, and one to run it as a slave. I tested it by accessing Geoserver via the virtual IP.  
 * Once we finished creating and testing small bricks, the three of us worked to make it work all together. We created a docker-compose file and we run it. If course, it didn't work at the first time, we did a lot of tests to debug it, and finaly we succeeded.
+* Finally, I wrote the user guide, to allow a user starting from zero to have a detailed manual to run the application.
 
 ###Architecture limitations
 
