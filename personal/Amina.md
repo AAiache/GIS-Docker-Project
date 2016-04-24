@@ -1,6 +1,6 @@
-#Amina's feedback
+# Amina's report
 
-##Accomplished tasks
+## Accomplished tasks
 
 I worked with Alban and Valentin during three months to make this cloud resilient GIS on a Docker Swarm cluster. It was a real team-work. During the first week, we asked for Raspberry Pi machines and we got them. Then, we set them up at Valentin's house (in order to have them set up during the whole project's period), and we configured them.  
 We also worked together to propose a conception to respond to the need, so as we could divide what should be done into small tasks. In general, I did the following tasks:
@@ -12,13 +12,20 @@ I tested my image by running two PostgreSQL containers on different machine, and
 * One of the most difficult tasks was to run Keepalived in a Docker container, I did it.  
 We have three Geoservers running in Docker containers, managed by HAProxy which runs in Docker conatiners too. The problem is if we want to add a Geoserver, we should stop the service. As a result, our system would not be a `high available` one. The solution is to add a virtual IP between HAProxy containers, define a master one, and if it crashes, the service is still available. That is why we used Keepalived.
 I created a Docker image to run Keepalived as a master, and one to run it as a slave. I tested it by accessing Geoserver via the virtual IP.  
-* Once we finished creating and testing small bricks, the three of us worked to make it work all together. We created a docker-compose file and we run it. If course, it didn't work at the first time, we did a lot of tests to debug it, and finaly we succeeded.
-* Finally, I wrote the user guide, to allow a user starting from zero to have a detailed manual to run the application.
+* Once we finished creating and testing small bricks, the three of us worked to make it work all together. We created a docker-compose file and we run it. If course, it didn't work at the first time, we did a lot of tests to debug it, and finaly we succeeded.  
+I thought that making a Docker Swarm cluster was very difficult, because it was hard to understand in class, but we finally succeded to make a cluster using Docker Swarm and Consul without real difficulties.  
+* Finally, I wrote the user guide, to allow a user starting from zero to have a detailed manual to run the application. I also did the physical and logical architecture diagrams.
 
-###Architecture limitations
+### Architecture limitations
 
 * The architecture we proposed has a Single Point Of Failure (SPOF), which is on the master machine which runs Swarm Manager and Consul. So, if this machine crashes, the service is not available anymore.
 
-###To improve it, we could:
+### To improve it, we could:
 
 * Run Consul on a docker container, so it would not have a SPOF anymore. Given that we have a virtaul IP provided by Keepalived which manages HAProxy and Pgpool-II containers, we should do the same for Consul!  
+* However, we will still have a SPOF, it is Swarm's. If the machine that contains the Swarm manager has a breakdonk, the service is no longer available.  
+
+### Blocking points
+
+I think that I don't have any blocking point. I understand all of what we did.  
+I beleive that it was a very interesting project, I really learned a lot of things, and I like Docker!
