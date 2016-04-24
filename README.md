@@ -42,6 +42,6 @@ To make our application, we proposed an architecture that we are going to explai
 
 ####3. Administrative Architeture: 
 
-![Physical Architeture](https://github.com/AAiache/GIS-Docker-Project/blob/master/Architecture_Diagrams/Physical.png?raw=tru "Physical Architeture")
+![Physical Architeture](https://github.com/AAiache/GIS-Docker-Project/blob/master/Admin_Diagrams/admin.png?raw=tru "Physical Architeture")
 ##[Try it!](data/user_manual.md)
 
