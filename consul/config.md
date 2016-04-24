@@ -35,6 +35,6 @@ Now we have to modify the docker host :
 
 Restart the session. Now `docker ps -a` show the swarm container in `join` mode: we are not connected to the docker of the computer but the docker swarn in the container.
 
-### Be carefull!
+### Be careful!
 
 The IP addresses are related to our own network, use your IP adresses intead!
