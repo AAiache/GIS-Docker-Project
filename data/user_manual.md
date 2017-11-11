@@ -29,7 +29,7 @@ Jump to the [configuring instructions](../consul/config.md) to install and confi
 ### 4.1 Synchronise Geoservers
 
 In order to synchronise two or more Geoservers, we use a [NFS](NFS_Server.md) share.
-All Raspberry Pis on which we run a Geoserver has a directory `/mnt/geoserver` which we share as a volume with the container to run the server.
+All Raspberry Pis on which we run a Geoserver have a directory `/mnt/geoserver` which we share as a volume with the container to run the server.
 
 ### 4.2 Generate ssh keys
 
